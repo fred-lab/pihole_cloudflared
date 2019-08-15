@@ -1,17 +1,18 @@
-# Cloudflared  
-A Cloudflared docker's image made with Alpine, for DNS over HTTPS.  
-Can be use with Pihole.  
+# Pihole with Cloudflared  
+Pihole with docker for DNS over HTTPS via Cloudflared.  
 
 ## How to use  
 - Update **.env** with your informations. Choose the right architectrue (amd64, 386 or arm) For a Raspberry py, choose **arm**.  
 - Start the container with ```docker-compose up --build -d```.  
-- Connect into the container with ```docker-compose exec cloudflared sh ```.  
+- Connect into the container with ```docker-compose exec cloudflared sh ``` or ```docker-compose exec pihole sh```.  
+- Connect to the Pihole interface : **172.23.0.2/admin** (172.23.0.2 is the @ip of the pihole container).  
 
-In the **docker-compose.yml**, the cloudflared container has a static ip. You have to use this @ip to specify a custom DNS in your configuration.  
+### Update pihole admin password  
+If you have trouble with the pihole password, connect to the container ```docker-compose exec cloudflared sh ``` and run ```pihole -a -p``` then enter a new password (leave it blank if you don't want to use a password).  
 
-### To test if everything is working
-- Inside the container: ```dig @172.0.0.1 -p 5053 google.com```  
-- Outside the container : ```dig @172.28.1.1 -p 5053 google.com```  
+### To test if DNS over HTTPS is working
+- Inside the cloudflared container: ```dig @172.0.0.1 -p 5053 google.com```  
+- Outside the cloudflared container : ```dig @172.28.1.1 -p 5053 google.com```  
 
 You should have something like this in result :
 ```
@@ -37,3 +38,5 @@ You should have something like this in result :
 
 ## Relative links  
 https://docs.pi-hole.net/guides/dns-over-https/
+
+https://github.com/pi-hole/docker-pi-hole
