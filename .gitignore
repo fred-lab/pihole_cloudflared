@@ -4,5 +4,4 @@
 /etc-pihole/*
 !/etc-pihole/.gitkeep
 
-.env
 .docker-compose.yml
