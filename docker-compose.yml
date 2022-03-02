@@ -28,7 +28,7 @@ services:
     environment:
       TZ: ${Timezone}
       # http://pi.hole/admin password.
-      WEBPASSWORD: ${password}
+      WEBPASSWORD: ${Password}
       #Primary upstream DNS provider. it must be the static IP of Cloudflared container
       DNS1: '172.28.1.1#5053'
       # Secondary upstream DNS provider, default is Cloudflare DNS (1.1.1.1)
